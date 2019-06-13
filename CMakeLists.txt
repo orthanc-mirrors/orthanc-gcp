@@ -73,6 +73,20 @@ include_directories(
   ${ORTHANC_ROOT}
   )
 
+if (ON)
+  # Redefine the list of Orthanc sources, removing unused items, in
+  # order to reduce the number of files and speed up the builds
+  set(ORTHANC_CORE_SOURCES
+    ${ORTHANC_CORE_SOURCES_DEPENDENCIES}
+    ${ORTHANC_ROOT}/Core/ChunkedBuffer.cpp
+    ${ORTHANC_ROOT}/Core/Enumerations.cpp
+    ${ORTHANC_ROOT}/Core/HttpClient.cpp
+    ${ORTHANC_ROOT}/Core/Logging.cpp
+    ${ORTHANC_ROOT}/Core/SystemToolbox.cpp
+    ${ORTHANC_ROOT}/Core/Toolbox.cpp
+    )
+endif()
+
 add_library(OrthancGoogleCloudPlatform SHARED
   ${ORTHANC_ROOT}/Plugins/Samples/Common/OrthancPluginCppWrapper.cpp
   Plugin/GoogleAccount.cpp
