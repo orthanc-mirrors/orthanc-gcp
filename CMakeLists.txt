@@ -35,7 +35,7 @@ include(${ORTHANC_ROOT}/Resources/CMake/OrthancFrameworkParameters.cmake)
 set(ENABLE_CRYPTO_OPTIONS ON)
 set(ENABLE_ZLIB ON)
 set(ENABLE_WEB_CLIENT ON)
-set(ENABLE_OPENSSL_ENGINES OFF)
+set(ENABLE_OPENSSL_ENGINES ON)  # Necessary on Windows
 
 include(${ORTHANC_ROOT}/Resources/CMake/OrthancFrameworkConfiguration.cmake)
 
