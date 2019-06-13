@@ -21,7 +21,7 @@ unset LIBRARY_PATH
 
 cp -r /source /tmp/source-writeable
 cmake /tmp/source-writeable \
-    -DCMAKE_BUILD_TYPE=Release -DSTATIC_BUILD=ON \
+    -DCMAKE_BUILD_TYPE=$1 -DSTATIC_BUILD=ON \
     -DORTHANC_FRAMEWORK_SOURCE=web \
     -DCMAKE_INSTALL_PREFIX=/target 
 
