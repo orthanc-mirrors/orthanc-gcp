@@ -17,11 +17,16 @@ if [ "$1" != "Debug" -a "$1" != "Release" ]; then
     exit -1
 fi
 
+if [ -t 1 ]; then
+    # TTY is available => use interactive mode
+    DOCKER_FLAGS='-i'
+fi
+
 ROOT_DIR=`dirname $(readlink -f $0)`/..
 
 mkdir -p ${ROOT_DIR}/holy-build-box
 
-docker run -t -i --rm \
+docker run -t ${DOCKER_FLAGS} --rm \
     --user $(id -u):$(id -g) \
     -v ${ROOT_DIR}:/source:ro \
     -v ${ROOT_DIR}/holy-build-box:/target:rw \
