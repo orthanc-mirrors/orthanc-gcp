@@ -6,8 +6,8 @@ source /hbb_exe/activate
 
 set -x
 
-mkdir /build
-cd /build
+mkdir /tmp/build
+cd /tmp/build
 
 # Holy Build Box defines LDFLAGS as "-L/hbb_exe/lib
 # -static-libstdc++". The "-L/hbb_exe/lib" option results in linking
@@ -19,8 +19,8 @@ unset SHLIB_LDFLAGS
 unset LD_LIBRARY_PATH
 unset LIBRARY_PATH
 
-cp -r /source /source-writeable
-cmake /source-writeable \
+cp -r /source /tmp/source-writeable
+cmake /tmp/source-writeable \
     -DCMAKE_BUILD_TYPE=Release -DSTATIC_BUILD=ON \
     -DORTHANC_FRAMEWORK_SOURCE=web \
     -DCMAKE_INSTALL_PREFIX=/target 
