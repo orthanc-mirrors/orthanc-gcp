@@ -7,7 +7,7 @@ set(GCP_PLUGIN_VERSION "mainline")
 # TODO - Update to 1.5.7 once available
 
 if (GCP_PLUGIN_VERSION STREQUAL "mainline")
-  set(ORTHANC_FRAMEWORK_VERSION "1.5.6")
+  set(ORTHANC_FRAMEWORK_VERSION "mainline")
   set(ORTHANC_FRAMEWORK_DEFAULT_SOURCE "hg")
 else()
   set(ORTHANC_FRAMEWORK_VERSION "1.5.6")
