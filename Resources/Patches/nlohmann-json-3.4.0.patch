@@ -1,0 +1,24 @@
+--- nlohmann-json-3.4.0.hpp	2019-06-04 09:41:33.054001586 +0200
++++ nlohmann-json-3.4.0.hpp-patched	2019-06-04 09:50:08.401281085 +0200
+@@ -20223,10 +20223,6 @@
+ 
+ @since version 1.0.0
+ */
+-inline nlohmann::json operator "" _json(const char* s, std::size_t n)
+-{
+-    return nlohmann::json::parse(s, s + n);
+-}
+ 
+ /*!
+ @brief user-defined string literal for JSON pointer
+@@ -20241,10 +20237,6 @@
+ 
+ @since version 2.0.0
+ */
+-inline nlohmann::json::json_pointer operator "" _json_pointer(const char* s, std::size_t n)
+-{
+-    return nlohmann::json::json_pointer(std::string(s, n));
+-}
+ 
+ // #include <nlohmann/detail/macro_unscope.hpp>
+ 
