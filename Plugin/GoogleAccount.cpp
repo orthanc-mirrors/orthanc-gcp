@@ -31,6 +31,7 @@
 
 #include "GoogleAccount.h"
 
+#include <Core/Toolbox.h>
 
 void GoogleAccount::LoadAuthorizedUser(const std::string& json)
 {
@@ -216,8 +217,17 @@ bool GoogleAccount::UpdateServerDefinition(const std::string& dicomWebPluginRoot
                      "/dicomStores/" + dicomStore_ + 
                      "/dicomWeb/");
 
+  size_t colon = token.find(':');
+  if (colon == std::string::npos)
+  {
+    throw Orthanc::OrthancException(Orthanc::ErrorCode_InternalError);
+  }
+
+  std::string headerKey = Orthanc::Toolbox::StripSpaces(token.substr(0, colon));
+  std::string headerValue = Orthanc::Toolbox::StripSpaces(token.substr(colon + 1));
+
   Json::Value headers = Json::objectValue;
-  headers["Authorization"] = "Bearer " + token;
+  headers[headerKey] = headerValue;
 
   Json::Value server = Json::objectValue;
   server["Url"] = url;
