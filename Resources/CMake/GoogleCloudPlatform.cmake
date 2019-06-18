@@ -6,7 +6,7 @@ set(STORAGE_CLIENT_VERSION_MINOR 0)
 set(STORAGE_CLIENT_VERSION_PATCH 0)
 
 set(GCP_SOURCES_DIR ${CMAKE_BINARY_DIR}/google-cloud-cpp-0.9.0)
-set(GCP_URL "http://orthanc.osimis.io/ThirdPartyDownloads/google/google-cloud-cpp-0.9.0.tar.gz")
+set(GCP_URL "http://orthanc.osimis.io/ThirdPartyDownloads/dicom-web/google-cloud-cpp-0.9.0.tar.gz")
 set(GCP_MD5 "b7546b6b11d23dad6cf0c77ddf6c567b")
 
 if (IS_DIRECTORY "${GCP_SOURCES_DIR}")
