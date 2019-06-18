@@ -27,4 +27,6 @@ cmake /tmp/source-writeable \
 
 make -j`nproc`
 
+strip ./libOrthancGoogleCloudPlatform.so
+
 make install
