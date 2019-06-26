@@ -43,6 +43,7 @@ private:
   std::vector<GoogleAccount*>  accounts_;
   unsigned int                 timeoutSeconds_;
   unsigned int                 refreshIntervalSeconds_;
+  bool                         httpsVerifyPeers_;
 
   GoogleConfiguration();  // Singleton pattern
 
@@ -86,6 +87,11 @@ public:
   unsigned int GetTimeoutSeconds() const
   {
     return timeoutSeconds_;
+  }
+
+  bool IsHttpsVerifyPeers() const
+  {
+    return httpsVerifyPeers_;
   }
 
   static const GoogleConfiguration& GetInstance();

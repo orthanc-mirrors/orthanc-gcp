@@ -47,7 +47,8 @@ GoogleConfiguration::GoogleConfiguration()
 {
   OrthancPlugins::OrthancConfiguration configuration;
   caInfo_ = configuration.GetStringValue("HttpsCACertificates", "");
-
+  httpsVerifyPeers_ = configuration.GetBooleanValue("HttpsVerifyPeers", true);
+    
   {
 #if HAS_ORTHANC_FRAMEWORK_1_5_7 == 1
     OrthancPlugins::OrthancConfiguration dicomWeb(false);

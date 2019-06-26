@@ -54,11 +54,28 @@ namespace
 
         long timeout = static_cast<long>(configuration.GetTimeoutSeconds());
 
-        if ((!configuration.GetCaInfo().empty() &&
-             curl_easy_setopt(handle.get(), CURLOPT_CAINFO, configuration.GetCaInfo().c_str()) != CURLE_OK) ||
-            curl_easy_setopt(handle.get(), CURLOPT_SSL_VERIFYHOST, 2) != CURLE_OK ||
-            curl_easy_setopt(handle.get(), CURLOPT_SSL_VERIFYPEER, 1) != CURLE_OK ||
-            curl_easy_setopt(handle.get(), CURLOPT_TIMEOUT, timeout) != CURLE_OK)
+        if (!configuration.GetCaInfo().empty() &&
+            curl_easy_setopt(handle.get(), CURLOPT_CAINFO, configuration.GetCaInfo().c_str()) != CURLE_OK)
+        {
+          throw Orthanc::OrthancException(Orthanc::ErrorCode_InternalError,
+                                          "Cannot set the trusted Certificate Authorities");
+        }
+
+        bool ok;
+        
+        if (configuration.IsHttpsVerifyPeers())
+        {
+          ok = (curl_easy_setopt(handle.get(), CURLOPT_SSL_VERIFYHOST, 2) == CURLE_OK &&
+                curl_easy_setopt(handle.get(), CURLOPT_SSL_VERIFYPEER, 1) == CURLE_OK &&
+                curl_easy_setopt(handle.get(), CURLOPT_TIMEOUT, timeout) == CURLE_OK);
+        }
+        else
+        {
+          ok = (curl_easy_setopt(handle.get(), CURLOPT_SSL_VERIFYHOST, 0) == CURLE_OK &&
+                curl_easy_setopt(handle.get(), CURLOPT_SSL_VERIFYPEER, 0) == CURLE_OK);
+        }
+
+        if (!ok)
         {
           throw Orthanc::OrthancException(Orthanc::ErrorCode_InternalError,
                                           "Cannot initialize a libcurl handle");
@@ -96,20 +113,27 @@ void GoogleUpdater::Worker(const State* state,
 {
   std::shared_ptr<google::cloud::storage::oauth2::Credentials> credentials;
 
-  switch (account->GetType())
+  try
   {
-    case GoogleAccount::Type_ServiceAccount:
-      credentials = std::make_shared<google::cloud::storage::oauth2::ServiceAccountCredentials
-        <CurlBuilder>>(account->GetServiceAccount());
-      break;
+    switch (account->GetType())
+    {
+      case GoogleAccount::Type_ServiceAccount:
+        credentials = std::make_shared<google::cloud::storage::oauth2::ServiceAccountCredentials
+                                       <CurlBuilder>>(account->GetServiceAccount());
+        break;
 
-    case GoogleAccount::Type_AuthorizedUser:
-      credentials = std::make_shared<google::cloud::storage::oauth2::AuthorizedUserCredentials
-        <CurlBuilder>>(account->GetAuthorizedUser());
-      break;
+      case GoogleAccount::Type_AuthorizedUser:
+        credentials = std::make_shared<google::cloud::storage::oauth2::AuthorizedUserCredentials
+                                       <CurlBuilder>>(account->GetAuthorizedUser());
+        break;
 
-    default:
-      throw Orthanc::OrthancException(Orthanc::ErrorCode_NotImplemented);
+      default:
+        throw Orthanc::OrthancException(Orthanc::ErrorCode_NotImplemented);
+    }
+  }
+  catch (Orthanc::OrthancException& e)
+  {
+    credentials.reset();
   }
 
   if (credentials.get() == NULL)
