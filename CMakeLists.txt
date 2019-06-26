@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8)
 
 project(GoogleCloudPlatform)
 
-set(GCP_PLUGIN_VERSION "mainline")
+set(GCP_PLUGIN_VERSION "1.0")
 
 if (GCP_PLUGIN_VERSION STREQUAL "mainline")
   if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
