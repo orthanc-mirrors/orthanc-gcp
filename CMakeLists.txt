@@ -79,6 +79,24 @@ include_directories(
   ${ORTHANC_ROOT}
   )
 
+if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+  execute_process(
+    COMMAND 
+    ${PYTHON_EXECUTABLE} ${ORTHANC_ROOT}/Resources/WindowsResources.py
+    ${GCP_PLUGIN_VERSION} "Google Cloud Platform plugin" OrthancGoogleCloudPlatform.dll
+    "Plugin to access Google Cloud Platform from Orthanc"
+    ERROR_VARIABLE Failure
+    OUTPUT_FILE ${CMAKE_CURRENT_BINARY_DIR}/Version.rc
+    )
+
+  if (Failure)
+    message(FATAL_ERROR "Error while computing the version information: ${Failure}")
+  endif()
+
+  set(GCP_RESOURCES  ${CMAKE_CURRENT_BINARY_DIR}/Version.rc)
+endif()
+
+
 if (ON)
   # Redefine the list of Orthanc sources, removing unused items, in
   # order to reduce the number of files and speed up the builds
@@ -95,6 +113,7 @@ endif()
 
 add_library(OrthancGoogleCloudPlatform SHARED
   ${ORTHANC_ROOT}/Plugins/Samples/Common/OrthancPluginCppWrapper.cpp
+  ${GCP_RESOURCES}
   Plugin/GoogleAccount.cpp
   Plugin/GoogleConfiguration.cpp
   Plugin/GoogleUpdater.cpp
