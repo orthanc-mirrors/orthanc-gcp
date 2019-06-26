@@ -91,8 +91,8 @@ namespace
     };
 
   public:
-    CurlBuilder(std::string base_url,
-                std::shared_ptr<google::cloud::storage::internal::CurlHandleFactory> factory) :
+    CurlBuilder(const std::string& base_url,
+                const std::shared_ptr<google::cloud::storage::internal::CurlHandleFactory>& factory) :
       CurlRequestBuilder(base_url, std::make_shared<HandleFactory>())
     {
     }

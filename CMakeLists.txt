@@ -4,21 +4,19 @@ project(GoogleCloudPlatform)
 
 set(GCP_PLUGIN_VERSION "mainline")
 
-# TODO - Update to 1.5.7 once available
-
 if (GCP_PLUGIN_VERSION STREQUAL "mainline")
   if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
     set(ORTHANC_FRAMEWORK_VERSION "mainline")
   else()
     # "hg" is not available in holy-build-box => We set
-    # "ORTHANC_FRAMEWORK_SOURCE" to "web" in the build script, which
-    # forces to use a specific version (1.5.6)
-    set(ORTHANC_FRAMEWORK_VERSION "1.5.6")
+    # "ORTHANC_FRAMEWORK_SOURCE" to "web" in the BuildBot script, which
+    # forces to use a specific version (1.5.7)
+    set(ORTHANC_FRAMEWORK_VERSION "1.5.7")
   endif()
     
   set(ORTHANC_FRAMEWORK_DEFAULT_SOURCE "hg")
 else()
-  set(ORTHANC_FRAMEWORK_VERSION "1.5.6")
+  set(ORTHANC_FRAMEWORK_VERSION "1.5.7")
   set(ORTHANC_FRAMEWORK_DEFAULT_SOURCE "web")
 endif()
 
