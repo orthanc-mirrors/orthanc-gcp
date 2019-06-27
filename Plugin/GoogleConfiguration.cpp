@@ -70,9 +70,9 @@ GoogleConfiguration::GoogleConfiguration()
     configuration.GetSection(google, "GoogleCloudPlatform");
 
     baseGoogleUrl_ = google.GetStringValue("BaseUrl", DEFAULT_GOOGLE_URL);
-    timeoutSeconds_ = google.GetUnsignedIntegerValue("Timeout", 10);
+    timeoutSeconds_ = google.GetUnsignedIntegerValue("Timeout", 60);
       
-    if (!google.LookupUnsignedIntegerValue(refreshIntervalSeconds_, "RefreshInternal") ||
+    if (!google.LookupUnsignedIntegerValue(refreshIntervalSeconds_, "RefreshInterval") ||
         refreshIntervalSeconds_ == 0)
     {
       refreshIntervalSeconds_ = 60;
