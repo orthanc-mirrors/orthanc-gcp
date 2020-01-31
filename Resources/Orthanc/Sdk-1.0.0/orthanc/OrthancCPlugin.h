@@ -107,13 +107,9 @@
 #include <string.h>
 
 #ifdef WIN32
-#  define ORTHANC_PLUGINS_API __declspec(dllexport)
-#elif __GNUC__ >= 4
-/* This line is a patch wrt. Orthanc 1.0.0. It is necessary to have
- * the plugin symbols defined using holy-build-box. */
-#  define ORTHANC_PLUGINS_API __attribute__ ((visibility ("default")))
+#define ORTHANC_PLUGINS_API __declspec(dllexport)
 #else
-#  define ORTHANC_PLUGINS_API
+#define ORTHANC_PLUGINS_API
 #endif
 
 #define ORTHANC_PLUGINS_MINIMAL_MAJOR_NUMBER     1
