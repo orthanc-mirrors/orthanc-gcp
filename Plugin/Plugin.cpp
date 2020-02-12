@@ -80,7 +80,7 @@ static bool CheckDicomWebVersion()
     if (!ok)
     {
       LOG(ERROR) << "The DICOMweb version (currently " << version
-                 << ") must be above 0.7 to use the Google Cloud Platform plugin";
+                 << ") must be above 1.0 to use the Google Cloud Platform plugin";
     }
 
     return ok;
