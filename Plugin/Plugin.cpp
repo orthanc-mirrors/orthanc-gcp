@@ -68,8 +68,8 @@ static bool CheckDicomWebVersion()
         int major = boost::lexical_cast<int>(tokens[0]);
         int minor = boost::lexical_cast<int>(tokens[1]);
 
-        ok = (major >= 1 ||
-              (major == 0 && minor >= 7));
+        ok = (major >= 2 ||
+              (major == 1 && minor >= 0));
       }
       catch (boost::bad_lexical_cast&)
       {
