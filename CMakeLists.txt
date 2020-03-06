@@ -36,6 +36,8 @@ set(ORTHANC_SDK_VERSION "1.0.0" CACHE STRING "Version of the Orthanc plugin SDK 
 
 include(${CMAKE_SOURCE_DIR}/Resources/Orthanc/DownloadOrthancFramework.cmake)
 
+set(OPENSSL_STATIC_VERSION "1.0.2" CACHE STRING "TODO - Upgrade to OpenSSL 1.1.1" FORCE)
+
 include(${ORTHANC_ROOT}/Resources/CMake/OrthancFrameworkParameters.cmake)
 
 set(ENABLE_CRYPTO_OPTIONS ON)
