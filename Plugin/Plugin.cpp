@@ -32,9 +32,9 @@
 #include "GoogleConfiguration.h"
 #include "GoogleUpdater.h"
 
-#include <Core/HttpClient.h>
-#include <Core/Toolbox.h>
-#include <Plugins/Samples/Common/OrthancPluginCppWrapper.h>
+#include <HttpClient.h>
+#include <Toolbox.h>
+#include <OrthancPluginCppWrapper.h>
 
 
 static bool CheckDicomWebVersion()

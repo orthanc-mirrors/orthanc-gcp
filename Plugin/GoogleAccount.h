@@ -31,7 +31,7 @@
 
 #pragma once
 
-#include <Plugins/Samples/Common/OrthancPluginCppWrapper.h>
+#include <OrthancPluginCppWrapper.h>
 
 #include <google/cloud/storage/oauth2/authorized_user_credentials.h>
 #include <google/cloud/storage/oauth2/service_account_credentials.h>
