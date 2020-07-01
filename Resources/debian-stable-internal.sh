@@ -13,7 +13,7 @@ useradd -u ${USER_ID} -r -g orthanc orthanc
 
 # Static build using the root user
 apt-get update
-apt-get install -y cmake build-essential unzip
+apt-get install -y cmake build-essential unzip mercurial
 
 mkdir /tmp/build
 cd /tmp/build
@@ -22,7 +22,6 @@ cp -r /source /tmp/source-writeable
 cmake /tmp/source-writeable \
     -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
     -DSTATIC_BUILD=ON \
-    -DORTHANC_FRAMEWORK_SOURCE=web \
     -DCMAKE_INSTALL_PREFIX=/target 
 
 make -j`nproc`
