@@ -30,6 +30,8 @@ set(ORTHANC_SDK_VERSION "1.0.0" CACHE STRING "Version of the Orthanc plugin SDK 
 # Download and setup the Orthanc framework
 include(${CMAKE_SOURCE_DIR}/Resources/Orthanc/CMake/DownloadOrthancFramework.cmake)
 
+include_directories(${ORTHANC_FRAMEWORK_ROOT})
+
 if (ORTHANC_FRAMEWORK_SOURCE STREQUAL "system")
   link_libraries(${ORTHANC_FRAMEWORK_LIBRARIES})
 
@@ -42,15 +44,14 @@ if (ORTHANC_FRAMEWORK_SOURCE STREQUAL "system")
 else()
   set(OPENSSL_STATIC_VERSION "1.0.2" CACHE STRING "TODO - Upgrade to OpenSSL 1.1.1" FORCE)
 
-  include(${ORTHANC_FRAMEWORK_ROOT}/Resources/CMake/OrthancFrameworkParameters.cmake)
+  include(${ORTHANC_FRAMEWORK_ROOT}/../Resources/CMake/OrthancFrameworkParameters.cmake)
 
   set(ENABLE_CRYPTO_OPTIONS ON)
   set(ENABLE_ZLIB ON)
   set(ENABLE_WEB_CLIENT ON)
   set(ENABLE_OPENSSL_ENGINES ON)  # Necessary on Windows
   
-  include(${ORTHANC_FRAMEWORK_ROOT}/Resources/CMake/OrthancFrameworkConfiguration.cmake)
-  include_directories(${ORTHANC_FRAMEWORK_ROOT}/Sources)
+  include(${ORTHANC_FRAMEWORK_ROOT}/../Resources/CMake/OrthancFrameworkConfiguration.cmake)
 endif()
 
 
@@ -89,7 +90,7 @@ include_directories(
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
   execute_process(
     COMMAND 
-    ${PYTHON_EXECUTABLE} ${ORTHANC_FRAMEWORK_ROOT}/Resources/WindowsResources.py
+    ${PYTHON_EXECUTABLE} ${ORTHANC_FRAMEWORK_ROOT}/../Resources/WindowsResources.py
     ${GCP_PLUGIN_VERSION} "Google Cloud Platform plugin" OrthancGoogleCloudPlatform.dll
     "Plugin to access Google Cloud Platform from Orthanc"
     ERROR_VARIABLE Failure
@@ -109,12 +110,12 @@ if (NOT ORTHANC_FRAMEWORK_SOURCE STREQUAL "system")
   # order to reduce the number of files and speed up the builds
   set(ORTHANC_CORE_SOURCES
     ${ORTHANC_CORE_SOURCES_DEPENDENCIES}
-    ${ORTHANC_FRAMEWORK_ROOT}/Sources/ChunkedBuffer.cpp
-    ${ORTHANC_FRAMEWORK_ROOT}/Sources/Enumerations.cpp
-    ${ORTHANC_FRAMEWORK_ROOT}/Sources/HttpClient.cpp
-    ${ORTHANC_FRAMEWORK_ROOT}/Sources/Logging.cpp
-    ${ORTHANC_FRAMEWORK_ROOT}/Sources/SystemToolbox.cpp
-    ${ORTHANC_FRAMEWORK_ROOT}/Sources/Toolbox.cpp
+    ${ORTHANC_FRAMEWORK_ROOT}/ChunkedBuffer.cpp
+    ${ORTHANC_FRAMEWORK_ROOT}/Enumerations.cpp
+    ${ORTHANC_FRAMEWORK_ROOT}/HttpClient.cpp
+    ${ORTHANC_FRAMEWORK_ROOT}/Logging.cpp
+    ${ORTHANC_FRAMEWORK_ROOT}/SystemToolbox.cpp
+    ${ORTHANC_FRAMEWORK_ROOT}/Toolbox.cpp
     )
 endif()
 
