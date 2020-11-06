@@ -32,14 +32,13 @@
 
 #include "GoogleConfiguration.h"
 
-
-#define DEFAULT_GOOGLE_URL "https://healthcare.googleapis.com/v1beta1/"
-#define DEFAULT_DICOMWEB_PLUGIN_ROOT "/dicom-web"
-
+#include <Logging.h>
 
 #include <boost/thread/mutex.hpp>
 
 
+#define DEFAULT_GOOGLE_URL "https://healthcare.googleapis.com/v1beta1/"
+#define DEFAULT_DICOMWEB_PLUGIN_ROOT "/dicom-web"
 #define HAS_ORTHANC_FRAMEWORK_1_5_7  0    // TODO - Update to 1.5.7 once available + CMakeLists.txt
  
 

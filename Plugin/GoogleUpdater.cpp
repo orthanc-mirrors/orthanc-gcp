@@ -33,6 +33,8 @@
 
 #include "GoogleConfiguration.h"
 
+#include <Logging.h>
+
 #include <google/cloud/storage/internal/curl_handle_factory.h>
 #include <google/cloud/storage/oauth2/google_credentials.h>
 

@@ -35,6 +35,7 @@
 #include "../Resources/Orthanc/Plugins/OrthancPluginCppWrapper.h"
 
 #include <HttpClient.h>
+#include <Logging.h>
 #include <Toolbox.h>
 
 

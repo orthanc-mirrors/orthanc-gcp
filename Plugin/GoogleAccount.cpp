@@ -31,6 +31,7 @@
 
 #include "GoogleAccount.h"
 
+#include <Logging.h>
 #include <Toolbox.h>
 
 void GoogleAccount::LoadAuthorizedUser(const std::string& json)

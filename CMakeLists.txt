@@ -111,11 +111,14 @@ if (NOT ORTHANC_FRAMEWORK_SOURCE STREQUAL "system")
   set(ORTHANC_CORE_SOURCES
     ${ORTHANC_CORE_SOURCES_DEPENDENCIES}
     ${ORTHANC_FRAMEWORK_ROOT}/ChunkedBuffer.cpp
+    ${ORTHANC_FRAMEWORK_ROOT}/DicomFormat/DicomTag.cpp
     ${ORTHANC_FRAMEWORK_ROOT}/Enumerations.cpp
     ${ORTHANC_FRAMEWORK_ROOT}/HttpClient.cpp
     ${ORTHANC_FRAMEWORK_ROOT}/Logging.cpp
+    ${ORTHANC_FRAMEWORK_ROOT}/OrthancException.cpp
     ${ORTHANC_FRAMEWORK_ROOT}/SystemToolbox.cpp
     ${ORTHANC_FRAMEWORK_ROOT}/Toolbox.cpp
+    ${ORTHANC_FRAMEWORK_ROOT}/WebServiceParameters.cpp
     )
 endif()
 
