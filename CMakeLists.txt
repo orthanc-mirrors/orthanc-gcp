@@ -1,3 +1,11 @@
+
+# C++11 is necessary to build the Google Cloud Platform C++ Client
+# Libraries (this plugin cannot be compiled on Visual Studio 2008, or
+# using Linux Standard Base - HolyBuildBox is used on Linux). MinGW on
+# Ubuntu 18.04 does not work either, as "std::mutex" seems to be
+# undefined. https://github.com/googleapis/google-cloud-cpp
+
+
 cmake_minimum_required(VERSION 2.8)
 
 project(GoogleCloudPlatform)
@@ -8,7 +16,7 @@ if (GCP_PLUGIN_VERSION STREQUAL "mainline")
   set(ORTHANC_FRAMEWORK_VERSION "mainline")
   set(ORTHANC_FRAMEWORK_DEFAULT_SOURCE "hg")
 else()
-  set(ORTHANC_FRAMEWORK_VERSION "1.5.7")
+  set(ORTHANC_FRAMEWORK_VERSION "4a3ba4bf4ba7")  # This is Orthanc Framework pre-1.8.2 (includes a fix for OpenSSL on MSVC)
   set(ORTHANC_FRAMEWORK_DEFAULT_SOURCE "web")
 endif()
 
@@ -26,7 +34,6 @@ set(USE_SYSTEM_ORTHANC_SDK ON CACHE BOOL "Use the system version of the Orthanc 
 set(ORTHANC_SDK_VERSION "1.0.0" CACHE STRING "Version of the Orthanc plugin SDK to use, if not using the system version (can be \"1.0.0\")")
 
 
-
 # Download and setup the Orthanc framework
 include(${CMAKE_SOURCE_DIR}/Resources/Orthanc/CMake/DownloadOrthancFramework.cmake)
 
@@ -42,8 +49,8 @@ if (ORTHANC_FRAMEWORK_SOURCE STREQUAL "system")
   include(${CMAKE_SOURCE_DIR}/Resources/Orthanc/CMake/OpenSslConfiguration.cmake)
 
 else()
-  set(OPENSSL_STATIC_VERSION "1.0.2" CACHE STRING "TODO - Upgrade to OpenSSL 1.1.1" FORCE)
-
+  set(OPENSSL_STATIC_VERSION "1.1.1" CACHE STRING "Force the use of OpenSSL 1.1.1" FORCE)
+  
   include(${ORTHANC_FRAMEWORK_ROOT}/../Resources/CMake/OrthancFrameworkParameters.cmake)
 
   set(ENABLE_CRYPTO_OPTIONS ON)

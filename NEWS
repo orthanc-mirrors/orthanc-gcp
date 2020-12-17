@@ -2,6 +2,8 @@ Pending changes in the mainline
 ===============================
 
 * Support of dynamic linking against the system-wide Orthanc framework library
+* Upgraded dependencies for static builds (notably on Windows and LSB):
+  - openssl 1.1.1g
 
 
 Version 1.0 (2019-06-26)
