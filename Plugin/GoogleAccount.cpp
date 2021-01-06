@@ -1,6 +1,6 @@
 /**
  * Google Cloud Platform credentials for DICOMweb and Orthanc
- * Copyright (C) 2019-2020 Osimis S.A., Belgium
+ * Copyright (C) 2019-2021 Osimis S.A., Belgium
  *
  * This program is free software: you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
