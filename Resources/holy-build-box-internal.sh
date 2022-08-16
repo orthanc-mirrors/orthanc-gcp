@@ -31,6 +31,7 @@ export PATH=${PATH}:/tmp/${MERCURIAL}/
 
 cp -r /source /tmp/source-writeable
 cmake /tmp/source-writeable \
+    -DUSE_LEGACY_BOOST=ON \
     -DCMAKE_BUILD_TYPE=$1 -DSTATIC_BUILD=ON \
     -DCMAKE_INSTALL_PREFIX=/target 
 
