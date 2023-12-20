@@ -1,6 +1,6 @@
 # curl -L https://raw.githubusercontent.com/nlohmann/json/v3.4.0/single_include/nlohmann/json.hpp | gzip -9 > nlohmann-json-3.4.0.gz
 set(NLOHMANN_JSON_SOURCE ${CMAKE_BINARY_DIR}/nlohmann-json-3.4.0.hpp)
-set(NLOHMANN_JSON_URL "http://orthanc.osimis.io/ThirdPartyDownloads/dicom-web/nlohmann-json-3.4.0.gz")
+set(NLOHMANN_JSON_URL "https://orthanc.uclouvain.be/downloads/third-party-downloads/dicom-web/nlohmann-json-3.4.0.gz")
 set(NLOHMANN_JSON_MD5 "f3346873ec78a0c90f1f05e4c2575412")
 
 if (EXISTS "${NLOHMANN_JSON_SOURCE}")

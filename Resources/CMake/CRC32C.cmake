@@ -1,5 +1,5 @@
 set(CRC32C_SOURCES_DIR ${CMAKE_BINARY_DIR}/crc32c-1.0.6)
-set(CRC32C_URL "http://orthanc.osimis.io/ThirdPartyDownloads/dicom-web/crc32c-1.0.6.tar.gz")
+set(CRC32C_URL "https://orthanc.uclouvain.be/downloads/third-party-downloads/dicom-web/crc32c-1.0.6.tar.gz")
 set(CRC32C_MD5 "e7eaad378aeded322d27a35b0011d626")
 DownloadPackage(${CRC32C_MD5} ${CRC32C_URL} "${CRC32C_SOURCES_DIR}")
 
