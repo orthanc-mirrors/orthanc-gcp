@@ -156,6 +156,10 @@ add_library(OrthancGoogleCloudPlatform SHARED
   ${ORTHANC_CORE_SOURCES}
   )  
 
+if (COMMAND DefineSourceBasenameForTarget)
+  DefineSourceBasenameForTarget(OrthancGoogleCloudPlatform)
+endif()
+
 set_target_properties(OrthancGoogleCloudPlatform PROPERTIES 
   VERSION ${GCP_PLUGIN_VERSION} 
   SOVERSION ${GCP_PLUGIN_VERSION})
